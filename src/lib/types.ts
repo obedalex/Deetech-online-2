@@ -7,5 +7,13 @@ export interface Product {
   category: string;
   description?: string;
   inStock: boolean;
+  rating?: number;
+  reviewCount?: number;
+  originalPrice?: number;
+  badge?: string;
+  specs?: Array<{
+    label: string;
+    value: string;
+  }>;
 }
 

@@ -15,7 +15,7 @@ const LEGAL_LINKS = [
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#0d1117] border-t border-white/10">
+    <footer className="w-full bg-background border-t border-border">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 py-12 sm:py-16">
         {/* Top grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 sm:gap-12">
@@ -23,25 +23,25 @@ const Footer = () => {
           <div className="flex flex-col gap-4">
             <Link
               href="/"
-              className="flex items-center gap-1.5 text-cyan-400 font-bold text-lg tracking-tight w-fit"
+              className="flex items-center gap-1.5 text-primary font-bold text-lg tracking-tight w-fit"
             >
               <Zap className="w-5 h-5 fill-cyan-400" />
               Deetech
             </Link>
-            <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               Premium tech products curated for enthusiasts who demand the best.
             </p>
           </div>
 
           {/* Support */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-white text-sm font-semibold">Support</h3>
+            <h3 className="text-foreground text-sm font-semibold">Support</h3>
             <ul className="flex flex-col gap-2.5">
               {SUPPORT_LINKS.map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-slate-400 text-sm hover:text-slate-200 transition-colors"
+                    className="text-muted-foreground text-sm hover:text-foreground transition-colors"
                   >
                     {label}
                   </Link>
@@ -52,13 +52,13 @@ const Footer = () => {
 
           {/* Legal */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-white text-sm font-semibold">Legal</h3>
+            <h3 className="text-foreground text-sm font-semibold">Legal</h3>
             <ul className="flex flex-col gap-2.5">
               {LEGAL_LINKS.map(({ label, href }) => (
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-slate-400 text-sm hover:text-slate-200 transition-colors"
+                    className="text-muted-foreground text-sm hover:text-foreground transition-colors"
                   >
                     {label}
                   </Link>
@@ -69,10 +69,10 @@ const Footer = () => {
         </div>
 
         {/* Divider */}
-        <div className="mt-12 border-t border-white/10" />
+        <div className="mt-12 border-t border-border" />
 
         {/* Bottom copyright */}
-        <p className="mt-6 text-center text-slate-500 text-sm">
+        <p className="mt-6 text-center text-muted-foreground text-sm">
           © {new Date().getFullYear()} Deetech. All rights reserved.
         </p>
       </div>

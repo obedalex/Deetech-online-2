@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useTheme } from "next-themes";
 import {
   Zap,
   Sun,
@@ -21,19 +22,19 @@ const NAV_LINKS = [
 
 const Navbar = () => {
   const pathname = usePathname();
-  const [isDark, setIsDark] = useState(true);
+  const { theme, setTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const cartCount = 3; // replace with real cart state
 
   return (
-    <header className="w-full border-b border-white/10 bg-[#0d1117] sticky top-0 z-50">
+    <header className="w-full border-b border-border bg-background sticky top-0 z-50">
       {/* ── Desktop & Tablet bar ── */}
       <nav className="relative max-w-7xl mx-auto px-6 h-14 flex items-center justify-between">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-1.5 text-cyan-400 font-bold text-lg tracking-tight shrink-0"
+          className="flex items-center gap-1.5 text-primary font-bold text-lg tracking-tight shrink-0"
         >
           <Zap className="w-5 h-5 fill-cyan-400" />
           Deetech
@@ -47,11 +48,10 @@ const Navbar = () => {
               <li key={href}>
                 <Link
                   href={href}
-                  className={`relative text-sm font-medium pb-0.5 transition-colors duration-150 ${
-                    isActive
-                      ? "text-cyan-400 after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-cyan-400"
-                      : "text-slate-400 hover:text-slate-200"
-                  }`}
+                  className={`relative text-sm font-medium pb-0.5 transition-colors duration-150 ${isActive
+                    ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-primary"
+                    : "text-muted-foreground hover:text-foreground"
+                    }`}
                 >
                   {label}
                 </Link>
@@ -85,7 +85,7 @@ const Navbar = () => {
               <button
                 onClick={() => setSearchOpen(true)}
                 aria-label="Open search"
-                className="p-2 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-colors"
+                className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
               >
                 <Search className="w-4 h-4" />
               </button>
@@ -94,37 +94,36 @@ const Navbar = () => {
 
           {/* Theme toggle — pill switch */}
           <button
-            onClick={() => setIsDark((prev) => !prev)}
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             aria-label="Toggle theme"
-            aria-pressed={isDark}
-            className="flex items-center gap-1.5 px-2 py-1 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-colors"
+            aria-pressed={theme === "dark"}
+            className="flex items-center gap-1.5 px-2 py-1 rounded-full border border-border bg-accent hover:bg-accent/80 transition-colors"
           >
             <Sun
-              className={`w-3.5 h-3.5 transition-colors ${isDark ? "text-slate-600" : "text-yellow-400"}`}
+              className={`w-3.5 h-3.5 transition-colors ${theme === "dark" ? "text-muted-foreground" : "text-yellow-400"}`}
             />
             {/* Track */}
-            <span className="relative w-8 h-4 rounded-full bg-white/10 border border-white/10 transition-colors">
+            <span className="relative w-8 h-4 rounded-full bg-muted border border-border transition-colors">
               {/* Thumb */}
               <span
-                className={`absolute top-0.5 w-3 h-3 rounded-full transition-all duration-200 ${
-                  isDark
-                    ? "translate-x-4 bg-cyan-400"
-                    : "translate-x-0.5 bg-yellow-400"
-                }`}
+                className={`absolute top-0.5 w-3 h-3 rounded-full transition-all duration-200 ${theme === "dark"
+                  ? "translate-x-4 bg-cyan-400"
+                  : "translate-x-0.5 bg-yellow-400"
+                  }`}
               />
             </span>
             <Moon
-              className={`w-3.5 h-3.5 transition-colors ${isDark ? "text-cyan-400" : "text-slate-600"}`}
+              className={`w-3.5 h-3.5 transition-colors ${theme === "dark" ? "text-primary" : "text-muted-foreground"}`}
             />
           </button>
 
           {/* Divider */}
-          <span className="hidden md:block w-px h-4 bg-white/10 mx-1" />
+          <span className="hidden md:block w-px h-4 bg-border mx-1" />
 
           {/* Account — hidden on mobile */}
           <button
             aria-label="Account"
-            className="hidden md:flex p-2 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-colors"
+            className="hidden md:flex p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
           >
             <User className="w-4 h-4" />
           </button>
@@ -133,11 +132,11 @@ const Navbar = () => {
           <Link
             href="/cart"
             aria-label={`Cart (${cartCount} items)`}
-            className="relative p-2 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-colors"
+            className="relative p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
           >
             <ShoppingCart className="w-4 h-4" />
             {cartCount > 0 && (
-              <span className="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-cyan-400 text-[9px] font-bold text-black flex items-center justify-center leading-none">
+              <span className="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-primary text-[9px] font-bold text-primary-foreground flex items-center justify-center leading-none">
                 {cartCount > 9 ? "9+" : cartCount}
               </span>
             )}
@@ -147,7 +146,7 @@ const Navbar = () => {
           <button
             onClick={() => setMobileOpen((prev) => !prev)}
             aria-label="Toggle menu"
-            className="md:hidden p-2 rounded-md text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-colors"
+            className="md:hidden p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
           >
             {mobileOpen ? (
               <X className="w-5 h-5" />
@@ -160,14 +159,14 @@ const Navbar = () => {
 
       {/* ── Mobile drawer ── */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-white/10 bg-[#0d1117] px-6 py-4 flex flex-col gap-4">
+        <div className="md:hidden border-t border-border bg-background px-6 py-4 flex flex-col gap-4">
           {/* Mobile search */}
-          <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-md px-3 py-2">
-            <Search className="w-4 h-4 text-slate-400 shrink-0" />
+          <div className="flex items-center gap-2 bg-accent border border-border rounded-md px-3 py-2">
+            <Search className="w-4 h-4 text-muted-foreground shrink-0" />
             <input
               type="text"
               placeholder="Search products..."
-              className="flex-1 bg-transparent text-sm text-slate-200 placeholder:text-slate-500 outline-none"
+              className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
             />
           </div>
 
@@ -180,11 +179,10 @@ const Navbar = () => {
                   <Link
                     href={href}
                     onClick={() => setMobileOpen(false)}
-                    className={`block px-2 py-2 rounded-md text-sm font-medium transition-colors ${
-                      isActive
-                        ? "text-cyan-400 bg-cyan-400/10"
-                        : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
-                    }`}
+                    className={`block px-2 py-2 rounded-md text-sm font-medium transition-colors ${isActive
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                      }`}
                   >
                     {label}
                   </Link>
@@ -194,8 +192,8 @@ const Navbar = () => {
           </ul>
 
           {/* Mobile account */}
-          <div className="border-t border-white/10 pt-3">
-            <button className="flex items-center gap-2 px-2 py-2 w-full rounded-md text-sm text-slate-400 hover:text-slate-200 hover:bg-white/5 transition-colors">
+          <div className="border-t border-border pt-3">
+            <button className="flex items-center gap-2 px-2 py-2 w-full rounded-md text-sm text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">
               <User className="w-4 h-4" />
               Account
             </button>

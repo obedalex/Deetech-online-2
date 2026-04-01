@@ -21,7 +21,7 @@ const Hero = () => {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-start gap-4 sm:gap-5 w-full px-6 sm:px-12 lg:px-16 max-w-full sm:max-w-2xl">
         {/* Badge */}
-        <div className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 rounded-full border border-cyan-400/40 bg-black/30 text-cyan-400 text-xs sm:text-sm font-medium backdrop-blur-sm">
+        <div className="flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 rounded-full border border-primary/40 bg-black/30 text-primary text-xs sm:text-sm font-medium backdrop-blur-sm">
           <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-cyan-400 shrink-0" />
           New arrivals just dropped
         </div>
@@ -30,11 +30,11 @@ const Hero = () => {
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
           <span className="text-white">Next-Gen Tech,</span>
           <br />
-          <span className="text-cyan-400">Delivered.</span>
+          <span className="text-primary">Delivered.</span>
         </h1>
 
         {/* Description */}
-        <p className="text-slate-300 sm:text-slate-400 text-sm sm:text-base leading-relaxed max-w-xs sm:max-w-sm">
+        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed max-w-xs sm:max-w-sm">
           Premium laptops, cutting-edge gadgets, and accessories — all curated
           for the tech-obsessed.
         </p>
@@ -42,7 +42,7 @@ const Hero = () => {
         {/* CTA */}
         <Button
           size="lg"
-          className="rounded-lg bg-cyan-400 hover:bg-cyan-300 text-black font-bold px-6 sm:px-7 text-sm sm:text-base h-10 sm:h-11"
+          className="rounded-lg bg-primary hover:bg-primary/80 text-primary-foreground font-bold px-6 sm:px-7 text-sm sm:text-base h-10 sm:h-11"
           asChild
         >
           <a href="/shop">Shop Now →</a>
