@@ -1,39 +1,39 @@
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
-import { Percent, Star, Heart, ShoppingCart } from "lucide-react";
+import Link from "next/link";
+import { Heart, Percent, ShoppingCart, Star } from "lucide-react";
+import { useCart } from "@/components/providers/CartProvider";
 import { products } from "@/lib/products";
 
-// Derive deals from products that have a discounted originalPrice
-const deals = products.filter((p) => p.originalPrice).slice(0, 3);
+const deals = products.filter((product) => product.originalPrice).slice(0, 3);
 
 const DealsSection = () => {
+  const { addToCart } = useCart();
+
   return (
     <section className="section-surface w-full px-4 py-12 sm:px-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-primary/40 bg-primary/10 text-primary text-xs font-medium mb-4">
-          <Percent className="w-3 h-3" />
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-4 inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-primary/10 px-3.5 py-1.5 text-xs font-medium text-primary">
+          <Percent className="h-3 w-3" />
           Limited Time Offers
         </div>
 
-        {/* Heading */}
         <h2 className="font-display text-2xl font-bold text-foreground">
           Deals of the <span className="text-primary">Week</span>
         </h2>
-        <p className="mt-1 text-sm text-muted-foreground mb-8">
+        <p className="mb-8 mt-1 text-sm text-muted-foreground">
           Save big on top-rated products. These deals won&apos;t last forever.
         </p>
 
-        {/* Deal cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {deals.map((product) => (
             <article
               key={product.id}
-              className="rounded-2xl border border-border bg-card overflow-hidden flex flex-col"
+              className="flex flex-col overflow-hidden rounded-2xl border border-border bg-card"
             >
-              {/* Image */}
               <div className="relative aspect-[4/3] bg-secondary/30">
-                <Link href={`/product/${product.id}`}>
+                <Link href={`/shop/${product.slug}`}>
                   <Image
                     src={`/${product.image}`}
                     alt={product.name}
@@ -43,55 +43,53 @@ const DealsSection = () => {
                   />
                 </Link>
 
-                {/* Badge */}
                 {product.badge && (
-                  <span className="absolute top-3 left-3 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">
+                  <span className="absolute left-3 top-3 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">
                     {product.badge}
                   </span>
                 )}
 
-                {/* Quick actions */}
-                <div className="absolute top-3 right-3 flex flex-col gap-2">
+                <div className="absolute right-3 top-3 flex flex-col gap-2">
                   <button
-                    aria-label="Add to wishlist"
-                    className="rounded-full bg-background/40 p-2 text-foreground backdrop-blur-sm hover:bg-background/60 transition-colors border border-border/50"
+                    type="button"
+                    aria-label={`Save ${product.name} to wishlist`}
+                    className="rounded-full border border-border/50 bg-background/40 p-2 text-foreground backdrop-blur-sm transition-colors hover:bg-background/60"
                   >
-                    <Heart className="w-4 h-4 text-primary" />
+                    <Heart className="h-4 w-4 text-primary" />
                   </button>
                   <button
-                    aria-label="Add to cart"
-                    className="rounded-full bg-primary p-2 text-primary-foreground hover:bg-primary/80 transition-colors"
+                    type="button"
+                    aria-label={`Add ${product.name} to cart`}
+                    onClick={() => addToCart(product)}
+                    className="rounded-full bg-primary p-2 text-primary-foreground transition-colors hover:bg-primary/80"
                   >
-                    <ShoppingCart className="w-4 h-4" />
+                    <ShoppingCart className="h-4 w-4" />
                   </button>
                 </div>
               </div>
 
-              {/* Info */}
               <div className="flex flex-col gap-1.5 p-4">
                 <p className="text-xs font-medium text-muted-foreground">
                   {product.category}
                 </p>
-                <Link href={`/product/${product.id}`}>
-                  <h3 className="text-sm font-bold text-foreground hover:text-primary transition-colors">
+                <Link href={`/shop/${product.slug}`}>
+                  <h3 className="text-sm font-bold text-foreground transition-colors hover:text-primary">
                     {product.name}
                   </h3>
                 </Link>
-                <p className="text-xs text-muted-foreground line-clamp-1">
+                <p className="line-clamp-1 text-xs text-muted-foreground">
                   {product.description}
                 </p>
 
-                {/* Rating */}
-                <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
-                  <Star className="w-3.5 h-3.5 fill-primary text-primary" />
+                <div className="mt-1 flex items-center gap-1 text-xs text-muted-foreground">
+                  <Star className="h-3.5 w-3.5 fill-primary text-primary" />
                   <span className="font-medium text-foreground">
                     {product.rating}
                   </span>
                   <span>({product.reviewCount})</span>
                 </div>
 
-                {/* Price */}
-                <div className="flex items-baseline gap-2 mt-1">
+                <div className="mt-1 flex items-baseline gap-2">
                   <span className="text-lg font-bold text-foreground">
                     ${product.price.toLocaleString()}
                   </span>

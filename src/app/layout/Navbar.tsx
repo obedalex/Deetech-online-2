@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useCart } from "@/components/providers/CartProvider";
 import { useTheme } from "next-themes";
 import {
   Zap,
@@ -23,10 +24,10 @@ const NAV_LINKS = [
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { itemCount } = useCart();
   const { theme, setTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const cartCount = 3; // replace with real cart state
 
   return (
     <header className="w-full border-b border-border bg-background sticky top-0 z-50">
@@ -134,13 +135,13 @@ const Navbar = () => {
           {/* Cart with badge */}
           <Link
             href="/cart"
-            aria-label={`Cart (${cartCount} items)`}
+            aria-label={`Cart (${itemCount} items)`}
             className="relative p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
           >
             <ShoppingCart className="w-4 h-4" />
-            {cartCount > 0 && (
+            {itemCount > 0 && (
               <span className="absolute top-1 right-1 w-3.5 h-3.5 rounded-full bg-primary text-[9px] font-bold text-primary-foreground flex items-center justify-center leading-none">
-                {cartCount > 9 ? "9+" : cartCount}
+                {itemCount > 9 ? "9+" : itemCount}
               </span>
             )}
           </Link>

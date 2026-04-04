@@ -1,51 +1,56 @@
-import Link from "next/link";
+"use client";
+
 import Image from "next/image";
-import { ShoppingCart, Heart } from "lucide-react";
-import { Product } from "@/lib/types"; // make sure this path is correct
+import Link from "next/link";
+import { Heart, ShoppingCart } from "lucide-react";
+import { useCart } from "@/components/providers/CartProvider";
+import { Product } from "@/lib/types";
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { addToCart } = useCart();
+
   return (
-    <div className="border border-border rounded-lg overflow-hidden bg-card">
-      <Link href={`/product/${product.id}`} className="block">
-        {/* Image */}
-        <div className="relative bg-muted">
+    <div className="overflow-hidden rounded-lg border border-border bg-card">
+      <div className="relative bg-muted">
+        <Link href={`/shop/${product.slug}`} className="block">
           <Image
-            src={`/${product.image}`} // make sure image is in /public
+            src={`/${product.image}`}
             alt={product.name}
             width={300}
             height={200}
-            className="w-full h-48 object-cover"
+            className="h-48 w-full object-cover"
           />
-          {/* Simple icons */}
-          <div className="absolute top-2 right-2 flex gap-2">
-            <button className="bg-card p-2 rounded-full border border-border">
-              <Heart className="w-4 h-4 text-primary" />
-            </button>
-            <button className="bg-card p-2 rounded-full border border-border">
-              <ShoppingCart className="w-4 h-4 text-primary" />
-            </button>
-          </div>
+        </Link>
+
+        <div className="absolute right-2 top-2 flex gap-2">
+          <button
+            type="button"
+            aria-label={`Save ${product.name} to wishlist`}
+            className="rounded-full border border-border bg-card p-2"
+          >
+            <Heart className="h-4 w-4 text-primary" />
+          </button>
+          <button
+            type="button"
+            aria-label={`Add ${product.name} to cart`}
+            onClick={() => addToCart(product)}
+            className="rounded-full border border-border bg-card p-2"
+          >
+            <ShoppingCart className="h-4 w-4 text-primary" />
+          </button>
         </div>
+      </div>
 
-        {/* Content */}
-        <div className="p-3">
-          <p className="text-xs text-muted-foreground">{product.category}</p>
-          <h3 className="text-sm font-semibold text-foreground">
-            {product.name}
-          </h3>
-
-          {/* Rating */}
-          {/* <div className="flex items-center gap-1 text-xs mt-1">
-            <Star className="w-3 h-3" /> {product.rating || 0}
-          </div> */}
-
-          {/* Price */}
-          <p className="mt-2 font-bold text-foreground">${product.price}</p>
-        </div>
+      <Link href={`/shop/${product.slug}`} className="block p-3">
+        <p className="text-xs text-muted-foreground">{product.category}</p>
+        <h3 className="text-sm font-semibold text-foreground">{product.name}</h3>
+        <p className="mt-2 font-bold text-foreground">
+          ${product.price.toLocaleString()}
+        </p>
       </Link>
     </div>
   );

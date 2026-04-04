@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/components/providers/CartProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./layout/Navbar";
 
@@ -37,8 +38,10 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider>
-          <Navbar />
-          <main className="flex-1">{children}</main>
+          <CartProvider>
+            <Navbar />
+            <main className="flex-1">{children}</main>
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

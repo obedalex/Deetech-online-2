@@ -55,7 +55,7 @@ const FeaturedSetupSection = () => {
         <div className="flex flex-col gap-4">
           {/* Hero product — full width */}
           <Link
-            href={`/product/${hero.id}`}
+            href={`/shop/${hero.slug}`}
             className="relative w-full aspect-[16/7] rounded-2xl overflow-hidden bg-secondary/30 block"
           >
             <Image
@@ -79,7 +79,7 @@ const FeaturedSetupSection = () => {
             {rest.map((product) => (
               <Link
                 key={product.id}
-                href={`/product/${product.id}`}
+                href={`/shop/${product.slug}`}
                 className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-secondary/30 block"
               >
                 <Image

@@ -1,18 +1,24 @@
-// src/app/shop/page.tsx
-import { notFound } from 'next/navigation';
-import { getProductById } from '@/lib/products';
-import ProductDetails from '@/components/product/ProductDetails';
+import { notFound } from "next/navigation";
+import { getProductBySlug } from "@/lib/products";
+import Footer from "@/app/layout/Footer";
+import ProductDetails from "@/components/product/ProductDetails";
 
 interface PageProps {
-    params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
-export default function ProductPage({ params }: PageProps) {
-    const product = getProductById(params.slug);
+export default async function ProductPage({ params }: PageProps) {
+  const { slug } = await params;
+  const product = getProductBySlug(slug);
 
-    if (!product) {
-        notFound();
-    }
+  if (!product) {
+    notFound();
+  }
 
-    return <ProductDetails product={product} />;
+  return (
+    <>
+      <ProductDetails product={product} />
+      <Footer />
+    </>
+  );
 }
