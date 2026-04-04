@@ -6,33 +6,33 @@ const CATEGORIES = [
   {
     label: "Laptops",
     icon: Laptop,
-    color: "bg-[#0f1f3d]",
+    color: "bg-card",
   },
   {
     label: "Audio",
     icon: Headphones,
-    color: "bg-[#2d1b4e]",
+    color: "bg-card",
   },
   {
     label: "Wearables",
     icon: Watch,
-    color: "bg-[#3b2000]",
+    color: "bg-card",
   },
   {
     label: "Peripherals",
     icon: Keyboard,
-    color: "bg-[#0d2e2e]",
+    color: "bg-card",
   },
   {
     label: "Tablets",
     icon: Tablet,
-    color: "bg-[#2d0f1a]",
+    color: "bg-card",
   },
 ];
 
 const CategorySection = () => {
   return (
-    <section className="w-full py-16 px-4 sm:px-8 bg-background">
+    <section className="section-surface-alt w-full px-4 py-16 sm:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10">
@@ -53,12 +53,12 @@ const CategorySection = () => {
               <Link
                 key={label}
                 href={`/shop?category=${label}`}
-                className={`${color} rounded-2xl p-6 flex flex-col items-center justify-center gap-3 border border-white/5 hover:border-white/20 hover:brightness-110 transition-all duration-200 group`}
+                className={`${color} rounded-2xl p-6 flex flex-col items-center justify-center gap-3 border border-border hover:border-primary/50 hover:brightness-110 transition-all duration-200 group`}
               >
-                <Icon className="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
+                <Icon className="w-8 h-8 text-primary group-hover:text-primary/80 transition-colors" />
                 <div className="text-center">
-                  <p className="text-sm font-bold text-white">{label}</p>
-                  <p className="text-xs text-white/50 mt-0.5">
+                  <p className="text-sm font-bold text-foreground">{label}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">
                     {count} {count === 1 ? "product" : "products"}
                   </p>
                 </div>

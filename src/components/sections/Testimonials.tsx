@@ -26,7 +26,7 @@ const TESTIMONIALS = [
 
 const TestimonialsSection = () => {
   return (
-    <section className="w-full py-16 px-4 sm:px-8 bg-background">
+    <section className="section-surface-alt w-full px-4 py-16 sm:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -45,13 +45,13 @@ const TestimonialsSection = () => {
               {/* Stars */}
               <div className="flex items-center gap-1">
                 {Array.from({ length: rating }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-cyan-400 text-cyan-400" />
+                  <Star key={i} className="w-4 h-4 fill-primary text-primary" />
                 ))}
               </div>
 
               {/* Quote */}
               <p className="text-sm text-muted-foreground leading-relaxed flex-1">
-                &quot;{quote}"
+                &quot;{quote}&quot;
               </p>
 
               {/* Reviewer */}

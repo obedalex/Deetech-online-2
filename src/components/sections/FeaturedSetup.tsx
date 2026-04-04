@@ -18,13 +18,13 @@ const FeaturedSetupSection = () => {
   if (!hero) return null;
 
   return (
-    <section className="w-full py-12 px-4 sm:px-8 bg-background">
+    <section className="section-surface-alt w-full px-4 py-12 sm:px-8">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
         {/* ── Left: text content ── */}
         <div className="flex flex-col gap-5">
           {/* Badge */}
           <div className="inline-flex w-fit items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-primary/40 bg-primary/10 text-primary text-xs font-medium">
-            <Zap className="w-3 h-3 fill-cyan-400" />
+            <Zap className="w-3 h-3 fill-primary" />
             Editor&apos;s Pick
           </div>
 
@@ -36,8 +36,9 @@ const FeaturedSetupSection = () => {
           {/* Description */}
           <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
             Pair the Gaming Laptop Pro with the Mechanical Keyboard and Gaming
-            Mouse for an unbeatable gaming experience. High-performance RTX graphics,
-            custom RGB switches, and precision DPI control — everything you need to dominate.
+            Mouse for an unbeatable gaming experience. High-performance RTX
+            graphics, custom RGB switches, and precision DPI control —
+            everything you need to dominate.
           </p>
 
           {/* CTA */}
@@ -65,7 +66,7 @@ const FeaturedSetupSection = () => {
               className="object-cover hover:scale-105 transition-transform duration-300"
             />
             {/* Info overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent p-4">
               <p className="text-sm font-bold text-white">{hero.name}</p>
               <p className="text-sm font-semibold text-primary">
                 ${hero.price.toLocaleString()}
@@ -89,8 +90,10 @@ const FeaturedSetupSection = () => {
                   className="object-cover hover:scale-105 transition-transform duration-300"
                 />
                 {/* Info overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent">
-                  <p className="text-xs font-bold text-white">{product.name}</p>
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent p-3">
+                  <p className="text-xs font-bold text-white">
+                    {product.name}
+                  </p>
                   <p className="text-xs font-semibold text-primary">
                     ${product.price.toLocaleString()}
                   </p>

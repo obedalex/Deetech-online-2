@@ -25,7 +25,7 @@ const Footer = () => {
               href="/"
               className="flex items-center gap-1.5 text-primary font-bold text-lg tracking-tight w-fit"
             >
-              <Zap className="w-5 h-5 fill-cyan-400" />
+              <Zap className="w-5 h-5 fill-primary" />
               Deetech
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">

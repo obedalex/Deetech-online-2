@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 
 const NAV_LINKS = [
+  { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
   { label: "Wishlist", href: "/wishlist" },
 ];
@@ -48,10 +49,11 @@ const Navbar = () => {
               <li key={href}>
                 <Link
                   href={href}
-                  className={`relative text-sm font-medium pb-0.5 transition-colors duration-150 ${isActive
-                    ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                    }`}
+                  className={`relative text-sm font-medium pb-0.5 transition-colors duration-150 ${
+                    isActive
+                      ? "text-primary after:absolute after:bottom-0 after:left-0 after:w-full after:h-px after:bg-primary"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {label}
                 </Link>
@@ -65,17 +67,17 @@ const Navbar = () => {
           {/* Expandable search — desktop */}
           <div className="hidden md:flex items-center">
             {searchOpen ? (
-              <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-md px-2 py-1">
-                <Search className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+              <div className="flex items-center gap-1 bg-background/50 border border-border rounded-md px-2 py-1">
+                <Search className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
                 <input
                   autoFocus
                   type="text"
                   placeholder="Search products..."
-                  className="bg-transparent text-sm text-slate-200 placeholder:text-slate-500 outline-none w-44"
+                  className="bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none w-44"
                 />
                 <button
                   onClick={() => setSearchOpen(false)}
-                  className="text-slate-500 hover:text-slate-300 transition-colors"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
                   aria-label="Close search"
                 >
                   <X className="w-3.5 h-3.5" />
@@ -100,16 +102,17 @@ const Navbar = () => {
             className="flex items-center gap-1.5 px-2 py-1 rounded-full border border-border bg-accent hover:bg-accent/80 transition-colors"
           >
             <Sun
-              className={`w-3.5 h-3.5 transition-colors ${theme === "dark" ? "text-muted-foreground" : "text-yellow-400"}`}
+              className={`w-3.5 h-3.5 transition-colors ${theme === "dark" ? "text-muted-foreground" : "text-primary"}`}
             />
             {/* Track */}
             <span className="relative w-8 h-4 rounded-full bg-muted border border-border transition-colors">
               {/* Thumb */}
               <span
-                className={`absolute top-0.5 w-3 h-3 rounded-full transition-all duration-200 ${theme === "dark"
-                  ? "translate-x-4 bg-cyan-400"
-                  : "translate-x-0.5 bg-yellow-400"
-                  }`}
+                className={`absolute top-0.5 w-3 h-3 rounded-full transition-all duration-200 ${
+                  theme === "dark"
+                    ? "translate-x-4 bg-primary"
+                    : "translate-x-0.5 bg-primary"
+                }`}
               />
             </span>
             <Moon
@@ -179,10 +182,11 @@ const Navbar = () => {
                   <Link
                     href={href}
                     onClick={() => setMobileOpen(false)}
-                    className={`block px-2 py-2 rounded-md text-sm font-medium transition-colors ${isActive
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
-                      }`}
+                    className={`block px-2 py-2 rounded-md text-sm font-medium transition-colors ${
+                      isActive
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-foreground hover:bg-accent"
+                    }`}
                   >
                     {label}
                   </Link>

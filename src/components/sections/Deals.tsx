@@ -8,7 +8,7 @@ const deals = products.filter((p) => p.originalPrice).slice(0, 3);
 
 const DealsSection = () => {
   return (
-    <section className="w-full py-12 px-4 sm:px-8 bg-background">
+    <section className="section-surface w-full px-4 py-12 sm:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Badge */}
         <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-primary/40 bg-primary/10 text-primary text-xs font-medium mb-4">
@@ -54,22 +54,22 @@ const DealsSection = () => {
                 <div className="absolute top-3 right-3 flex flex-col gap-2">
                   <button
                     aria-label="Add to wishlist"
-                    className="rounded-full bg-black/40 p-2 text-white backdrop-blur-sm hover:bg-black/60 transition-colors border border-white/10"
+                    className="rounded-full bg-background/40 p-2 text-foreground backdrop-blur-sm hover:bg-background/60 transition-colors border border-border/50"
                   >
-                    <Heart className="w-4 h-4 text-cyan-400" />
+                    <Heart className="w-4 h-4 text-primary" />
                   </button>
                   <button
                     aria-label="Add to cart"
                     className="rounded-full bg-primary p-2 text-primary-foreground hover:bg-primary/80 transition-colors"
                   >
-                    <ShoppingCart className="w-4 h-4 text-white" />
+                    <ShoppingCart className="w-4 h-4" />
                   </button>
                 </div>
               </div>
 
               {/* Info */}
               <div className="flex flex-col gap-1.5 p-4">
-                <p className="text-xs font-medium text-primary">
+                <p className="text-xs font-medium text-muted-foreground">
                   {product.category}
                 </p>
                 <Link href={`/product/${product.id}`}>
@@ -83,7 +83,7 @@ const DealsSection = () => {
 
                 {/* Rating */}
                 <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
-                  <Star className="w-3.5 h-3.5 fill-cyan-400 text-cyan-400" />
+                  <Star className="w-3.5 h-3.5 fill-primary text-primary" />
                   <span className="font-medium text-foreground">
                     {product.rating}
                   </span>

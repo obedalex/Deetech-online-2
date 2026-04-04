@@ -29,7 +29,7 @@ const FEATURES = [
 
 const WhyChooseSection = () => {
   return (
-    <section className="w-full py-16 px-4 sm:px-8 bg-background">
+    <section className="section-surface w-full px-4 py-16 sm:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -37,7 +37,7 @@ const WhyChooseSection = () => {
             Why Choose <span className="text-primary">Deetech</span>
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            We're not just another tech store.
+            We&apos;re not just another tech store.
           </p>
         </div>
 
@@ -50,7 +50,7 @@ const WhyChooseSection = () => {
             >
               {/* Icon container */}
               <div className="rounded-xl bg-primary/10 p-3">
-                <Icon className="w-6 h-6 text-cyan-400" />
+                <Icon className="w-6 h-6 text-primary" />
               </div>
 
               {/* Text */}

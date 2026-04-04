@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="relative w-full h-[60vh] sm:h-[70vh] min-h-96 sm:min-h-125 flex items-center overflow-hidden">
+    <section className="relative w-full h-[60vh] sm:h-[70vh] min-h-96 sm:min-h-125 flex items-center overflow-hidden border-y border-white/20">
       {/* Background image */}
       <Image
         src="/laptop-hero.jpg"
@@ -28,9 +30,9 @@ const Hero = () => {
 
         {/* Heading */}
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight tracking-tight">
-          <span className="text-white">Next-Gen Tech,</span>
+          <span className="text-foreground">Next-Gen Tech,</span>
           <br />
-          <span className="text-primary">Delivered.</span>
+          <span className="text-gradient">Delivered.</span>
         </h1>
 
         {/* Description */}
@@ -45,7 +47,9 @@ const Hero = () => {
           className="rounded-lg bg-primary hover:bg-primary/80 text-primary-foreground font-bold px-6 sm:px-7 text-sm sm:text-base h-10 sm:h-11"
           asChild
         >
-          <a href="/shop">Shop Now →</a>
+          <Link href="/shop">
+            Shop Now <ArrowRight />
+          </Link>
         </Button>
       </div>
     </section>
