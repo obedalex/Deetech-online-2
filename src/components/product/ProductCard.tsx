@@ -5,13 +5,16 @@ import Link from "next/link";
 import { Heart, ShoppingCart } from "lucide-react";
 import { useCart } from "@/components/providers/CartProvider";
 import { Product } from "@/lib/types";
+import { useWishlist } from "../providers/WishlistProvider";
 
 interface ProductCardProps {
   product: Product;
 }
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { addToCart } = useCart();
+  const wishlisted = isInWishlist(product.id);
 
   return (
     <div className="overflow-hidden rounded-lg border border-border bg-card">
@@ -29,10 +32,22 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <div className="absolute right-2 top-2 flex gap-2">
           <button
             type="button"
-            aria-label={`Save ${product.name} to wishlist`}
+            aria-label={
+              wishlisted
+                ? `Remove ${product.name} from wishlist`
+                : `Save ${product.name} to wishlist`
+            }
             className="rounded-full border border-border bg-card p-2"
+            onClick={() =>
+              wishlisted
+                ? removeFromWishlist(product.id)
+                : addToWishlist(product)
+            }
           >
-            <Heart className="h-4 w-4 text-primary" />
+            <Heart
+              className="h-4 w-4 text-primary"
+              fill={wishlisted ? "currentColor" : "none"}
+            />
           </button>
           <button
             type="button"
@@ -47,7 +62,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
       <Link href={`/shop/${product.slug}`} className="block p-3">
         <p className="text-xs text-muted-foreground">{product.category}</p>
-        <h3 className="text-sm font-semibold text-foreground">{product.name}</h3>
+        <h3 className="text-sm font-semibold text-foreground">
+          {product.name}
+        </h3>
         <p className="mt-2 font-bold text-foreground">
           ${product.price.toLocaleString()}
         </p>

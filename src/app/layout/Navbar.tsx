@@ -3,19 +3,22 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
-import Searchbar from "@/components/Searchbar";
+// import Searchbar from "@/components/Searchbar";
 import { Button } from "@/components/ui/button";
-import { Zap, Sun, Moon } from "lucide-react";
+import { useCart } from "@/components/providers/CartProvider";
+import { Zap, Sun, Moon, ShoppingCart, Heart } from "lucide-react";
+import { useWishlist } from "@/components/providers/WishlistProvider";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/shop" },
-  { label: "Wishlist", href: "/wishlist" },
 ];
 
 const Navbar = () => {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
+  const { itemCount: cartCount } = useCart();
+  const { itemCount: wishlistCount } = useWishlist();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background">
@@ -50,7 +53,7 @@ const Navbar = () => {
         </ul>
 
         <div className="flex items-center gap-3">
-          <Searchbar />
+          {/* <Searchbar value={searchQuery} onChange={setSearchQuery} /> */}
 
           <Button
             variant="ghost"
@@ -64,6 +67,32 @@ const Navbar = () => {
               <Moon className="h-5 w-5" />
             )}
           </Button>
+
+          <Link
+            href="/cart"
+            aria-label={`Cart (${cartCount} items)`}
+            className="relative inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          >
+            <ShoppingCart className="h-5 w-5" />
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-primary-foreground">
+                {cartCount > 9 ? "9+" : cartCount}
+              </span>
+            )}
+          </Link>
+
+          <Link
+            href="/wishlist"
+            aria-label={`Wishlist (${wishlistCount} items)`}
+            className="relative inline-flex h-9 w-9 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          >
+            <Heart className="h-5 w-5" />
+            {wishlistCount > 0 && (
+              <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-primary-foreground">
+                {wishlistCount > 9 ? "9+" : wishlistCount}
+              </span>
+            )}
+          </Link>
         </div>
       </nav>
     </header>

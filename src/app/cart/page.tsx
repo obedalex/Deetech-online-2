@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Heart } from "lucide-react";
 import Footer from "@/app/layout/Footer";
 import CartItemRow from "@/components/cart/CartItemRow";
 import CartSummary from "@/components/cart/CartSummary";
 import { useCart } from "@/components/providers/CartProvider";
+import { useWishlist } from "@/components/providers/WishlistProvider";
 import { Button } from "@/components/ui/button";
 
 const CartPage = () => {
@@ -49,6 +50,7 @@ const CartPage = () => {
       </>
     );
   }
+
 
   return (
     <>

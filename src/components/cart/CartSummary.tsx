@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 interface CartSummaryProps {
@@ -26,17 +27,16 @@ const CartSummary = ({ subtotal }: CartSummaryProps) => {
         </div>
       </div>
 
+      {/* ── PHASE F: button no longer disabled — wrapped in Next.js <Link> to /checkout
+          - asChild lets the Button render as the Link so styling stays
+          - removed the "demo only" caption that sat below */}
       <Button
-        type="button"
         size="lg"
-        disabled
-        className="mt-6 w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary"
+        asChild
+        className="mt-6 w-full rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-primary/80"
       >
-        Proceed to Checkout
+        <Link href="/checkout">Proceed to Checkout</Link>
       </Button>
-      <p className="mt-3 text-xs text-muted-foreground">
-        Checkout is not part of this demo yet.
-      </p>
     </div>
   );
 };
