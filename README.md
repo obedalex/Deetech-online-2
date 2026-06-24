@@ -1,4 +1,4 @@
-# Deetech
+# lumex
 
 A modern e-commerce frontend built with **Next.js 16**, **React 19**, **TypeScript**, and **Tailwind CSS**. Browse and filter a curated catalog of tech products, manage a cart and wishlist with localStorage persistence, and complete a full checkout flow.
 
@@ -36,18 +36,18 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Tech Stack
 
-| Layer | Choice |
-|---|---|
-| Framework | Next.js 16 (App Router) |
-| UI library | React 19 |
-| Language | TypeScript |
-| Styling | Tailwind CSS v4 |
-| Components | shadcn/ui + Radix UI |
-| Icons | lucide-react |
-| Theming | next-themes |
-| Animation | framer-motion |
-| Toasts | sonner |
-| Debouncing | use-debounce |
+| Layer      | Choice                  |
+| ---------- | ----------------------- |
+| Framework  | Next.js 16 (App Router) |
+| UI library | React 19                |
+| Language   | TypeScript              |
+| Styling    | Tailwind CSS v4         |
+| Components | shadcn/ui + Radix UI    |
+| Icons      | lucide-react            |
+| Theming    | next-themes             |
+| Animation  | framer-motion           |
+| Toasts     | sonner                  |
+| Debouncing | use-debounce            |
 
 ---
 
@@ -99,10 +99,7 @@ In React, an input is **controlled** when its value comes from state and its `on
 ```tsx
 const [searchQuery, setSearchQuery] = useState("");
 
-<input
-  value={searchQuery}
-  onChange={(e) => setSearchQuery(e.target.value)}
-/>
+<input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />;
 ```
 
 **Used in:** `Searchbar`, every form field in `/checkout`, price range inputs in the shop sidebar.
@@ -116,6 +113,7 @@ const [searchQuery, setSearchQuery] = useState("");
 When two components need to share or react to the same state, that state lives in their **common parent**, not in either child.
 
 For example, `Searchbar` doesn't own the search query. The shop page owns `searchQuery` and passes:
+
 - `value={searchQuery}` down to the searchbar
 - `onChange={setSearchQuery}` down so the searchbar can write to it
 
@@ -140,7 +138,7 @@ useEffect(() => {
 }, [searchQuery]);
 ```
 
-How it works: every time `searchQuery` changes, a new timer is set for 400ms. If another keystroke arrives before then, the cleanup function (`clearTimeout`) cancels the pending one. Only when the user *stops* typing for 400ms does `setDebouncedQuery` actually fire.
+How it works: every time `searchQuery` changes, a new timer is set for 400ms. If another keystroke arrives before then, the cleanup function (`clearTimeout`) cancels the pending one. Only when the user _stops_ typing for 400ms does `setDebouncedQuery` actually fire.
 
 **Used in:** `ShopPage` for filtering by search term.
 
@@ -157,7 +155,9 @@ Every filter follows the same three-part shape:
 ```tsx
 const filtered = products
   .filter((p) => p.name.toLowerCase().includes(debouncedQuery.toLowerCase()))
-  .filter((p) => selectedCategory === "All" ? true : p.category === selectedCategory)
+  .filter((p) =>
+    selectedCategory === "All" ? true : p.category === selectedCategory,
+  )
   .filter((p) => p.price >= minPrice && p.price <= maxPrice)
   .filter((p) => p.rating >= minRating);
 ```
@@ -195,7 +195,10 @@ Slice the visible array based on the current page:
 
 ```tsx
 const startIndex = (currentPage - 1) * itemsPerPage;
-const paginatedProducts = sortedProducts.slice(startIndex, startIndex + itemsPerPage);
+const paginatedProducts = sortedProducts.slice(
+  startIndex,
+  startIndex + itemsPerPage,
+);
 ```
 
 **Rule of thumb:** any state change that shrinks or reorders the list must reset `currentPage` to 1, otherwise the user may be stranded on an empty page.
@@ -215,6 +218,7 @@ useEffect(() => {
 When state needs to be accessible from many components at different depths (e.g., cart accessible from product cards, navbar, cart page, checkout), **Context** is the answer.
 
 Pattern:
+
 1. `createContext()` with the shape of what you'll provide
 2. A **Provider component** owns the state and provides it via the context
 3. A custom hook (`useCart`, `useWishlist`) wraps `useContext` and throws if used outside the provider
@@ -330,8 +334,8 @@ When you need to navigate from inside a function (e.g. after form submission), u
 import { useRouter } from "next/navigation";
 
 const router = useRouter();
-router.push("/checkout/success");    // adds to history
-router.replace("/shop");             // doesn't add to history (good for guards)
+router.push("/checkout/success"); // adds to history
+router.replace("/shop"); // doesn't add to history (good for guards)
 ```
 
 For declarative navigation in JSX, prefer `<Link href="...">`.
@@ -351,7 +355,7 @@ const handleSubmit = (e: React.FormEvent) => {
   router.push("/checkout/success");
 };
 
-<form onSubmit={handleSubmit}>...</form>
+<form onSubmit={handleSubmit}>...</form>;
 ```
 
 **Used in:** `checkout/page.tsx`.

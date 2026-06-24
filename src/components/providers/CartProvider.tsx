@@ -22,7 +22,7 @@ interface CartContextValue {
   clearCart: () => void;
 }
 
-const CART_STORAGE_KEY = "deetech-cart";
+const CART_STORAGE_KEY = "lumex-cart";
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
 
@@ -45,7 +45,11 @@ function normalizeCartEntries(raw: unknown): CartEntry[] {
 
     const quantity = Math.floor(candidate.quantity);
 
-    if (!Number.isFinite(quantity) || quantity <= 0 || !getProductById(candidate.productId)) {
+    if (
+      !Number.isFinite(quantity) ||
+      quantity <= 0 ||
+      !getProductById(candidate.productId)
+    ) {
       return [];
     }
 
@@ -105,13 +109,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const addToCart = (product: Product, quantity = 1) => {
     const parsedQuantity = Math.floor(quantity);
     const nextQuantity =
-      Number.isFinite(parsedQuantity) && parsedQuantity > 0 ? parsedQuantity : 1;
+      Number.isFinite(parsedQuantity) && parsedQuantity > 0
+        ? parsedQuantity
+        : 1;
 
     setEntries((currentEntries) => {
       const existingItem = currentEntries.find(
         (entry) => entry.productId === product.id,
       );
-      
+
       if (!existingItem) {
         return [
           ...currentEntries,
@@ -150,7 +156,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
           ? { ...entry, quantity: nextQuantity }
           : entry,
       ),
-
     );
   };
 
@@ -158,7 +163,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setEntries([]);
     toast.success("Cart cleared");
   };
-
 
   return (
     <CartContext.Provider

@@ -28,7 +28,7 @@ const Navbar = () => {
           className="flex shrink-0 items-center gap-2 text-xl font-bold tracking-tight text-primary"
         >
           <Zap className="h-6 w-6 fill-cyan-400" />
-          Deetech
+          lumex
         </Link>
 
         <ul className="absolute left-1/2 flex -translate-x-1/2 items-center gap-8">

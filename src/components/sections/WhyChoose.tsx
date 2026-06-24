@@ -34,7 +34,7 @@ const WhyChooseSection = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="font-display text-2xl font-bold text-foreground">
-            Why Choose <span className="text-primary">Deetech</span>
+            Why Choose <span className="text-primary">lumex</span>
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
             We&apos;re not just another tech store.

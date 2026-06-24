@@ -26,7 +26,7 @@ const Footer = () => {
               className="flex items-center gap-1.5 text-primary font-bold text-lg tracking-tight w-fit"
             >
               <Zap className="w-5 h-5 fill-primary" />
-              Deetech
+              lumex
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               Premium tech products curated for enthusiasts who demand the best.
@@ -73,7 +73,7 @@ const Footer = () => {
 
         {/* Bottom copyright */}
         <p className="mt-6 text-center text-muted-foreground text-sm">
-          © {new Date().getFullYear()} Deetech. All rights reserved.
+          © {new Date().getFullYear()} lumex. All rights reserved.
         </p>
       </div>
     </footer>

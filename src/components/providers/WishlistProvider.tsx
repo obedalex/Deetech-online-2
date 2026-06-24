@@ -24,8 +24,8 @@ interface WishlistContextValue {
   clearWishlist: () => void;
 }
 
-// ── FIX: storage key was "deetech-cart" — would clobber the real cart. Now unique.
-const WISHLIST_STORAGE_KEY = "deetech-wishlist";
+// ── FIX: storage key was "lumex-cart" — would clobber the real cart. Now unique.
+const WISHLIST_STORAGE_KEY = "lumex-wishlist";
 
 // ── FIX: renamed CartContext → WishlistContext
 const WishlistContext = createContext<WishlistContextValue | undefined>(
@@ -39,8 +39,7 @@ function normalizeWishlistIds(raw: unknown): string[] {
   }
 
   return raw.filter(
-    (id): id is string =>
-      typeof id === "string" && Boolean(getProductById(id)),
+    (id): id is string => typeof id === "string" && Boolean(getProductById(id)),
   );
 }
 

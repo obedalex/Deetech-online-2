@@ -3,7 +3,7 @@ import { Star } from "lucide-react";
 const TESTIMONIALS = [
   {
     quote:
-      "The NovaPro 16\" is hands down the best laptop I've ever owned. Deetech's curation is on another level.",
+      "The NovaPro 16\" is hands down the best laptop I've ever owned. lumex's curation is on another level.",
     name: "Alex R.",
     role: "Software Engineer",
     rating: 5,

@@ -4,7 +4,7 @@ import "./globals.css";
 import { CartProvider } from "@/components/providers/CartProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./layout/Navbar";
-import {Toaster} from "sonner"
+import { Toaster } from "sonner";
 import { WishlistProvider } from "@/components/providers/WishlistProvider";
 
 const geistSans = Geist({
@@ -24,8 +24,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Deetech",
-  description: "Deetech - Your trusted technology partner",
+  title: "lumex",
+  description: "lumex - Your trusted technology partner",
 };
 
 export default function RootLayout({
