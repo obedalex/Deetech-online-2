@@ -1,6 +1,6 @@
-# lumex
+# lumex — Tech Store
 
-A modern e-commerce frontend built with **Next.js 16**, **React 19**, **TypeScript**, and **Tailwind CSS**. Browse and filter a curated catalog of tech products, manage a cart and wishlist with localStorage persistence, and complete a full checkout flow.
+A modern e-commerce frontend built with **Next.js 16**, **React 19**, **TypeScript**, and **Tailwind CSS**, now backed by the **FakeStore API**. Browse and filter a curated catalog of tech products, manage a cart and wishlist with localStorage persistence, and complete a full checkout flow.
 
 This project doubles as a hands-on learning record — every concept exercised here (React hooks, Context, debouncing, pagination, controlled forms, route loading/error boundaries) is documented in the [Concepts I Learned Building This](#concepts-i-learned-building-this) section below.
 
